@@ -345,6 +345,105 @@
         @keyframes fade {
             from {opacity: 0;}
         }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist-item {
+            padding: 12px;
+            margin: 8px 0;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            transition: 0.2s;
+        }
+
+        .checklist-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-right: 15px;
+            width: 20px;
+            height: 20px;
+            accent-color: #6B8E23;
+        }
+
+        .checklist-item label {
+            flex-grow: 1;
+            color: #444;
+        }
+
+        .checked {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 480px) {
+            .checklist-item {
+                padding: 10px;
+            }
+            
+            .checklist-item input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        .links-container {
+            display: grid;
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .link-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .link-card a {
+            text-decoration: none;
+            color: #556B2F;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .link-card img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .link-title {
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .link-description {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 480px) {
+            .link-card {
+                padding: 15px;
+            }
+            
+            .link-card a {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
@@ -361,6 +460,9 @@
             <button class="tab-button" onclick="openTab(event, 'info4')">Regras</button>
             <button class="tab-button" onclick="openTab(event, 'info5')">Transporte</button>
             <button class="tab-button" onclick="openTab(event, 'info6')">Mapa</button>
+            <button class="tab-button" onclick="openTab(event, 'info7')">Checklist</button>
+            <button class="tab-button" onclick="openTab(event, 'info8')">Links Úteis</button>
+
         </div>
 
         <div id="info1" class="tab-content active">
@@ -504,6 +606,68 @@
                 Role a imagem para visualizar todas as áreas do parque
             </div>
         </div>
+
+        
+        <div id="info7" class="tab-content">
+            <h2>Itens para Levar</h2>
+            <ul class="checklist">
+                <li class="checklist-item">
+                    <input type="checkbox" id="item1" onchange="toggleCheck(this)">
+                    <label for="item1">Roupa de banho</label>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" id="item2" onchange="toggleCheck(this)">
+                    <label for="item2">Toalha</label>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" id="item3" onchange="toggleCheck(this)">
+                    <label for="item3">Protetor solar</label>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" id="item4" onchange="toggleCheck(this)">
+                    <label for="item4">Documentos</label>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" id="item5" onchange="toggleCheck(this)">
+                    <label for="item5">Dinheiro</label>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" id="item6" onchange="toggleCheck(this)">
+                    <label for="item6">Cartão de ônibus</label>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" id="item7" onchange="toggleCheck(this)">
+                    <label for="item7">Comida</label>
+                </li>
+                <li class="checklist-item">
+                    <input type="checkbox" id="item8" onchange="toggleCheck(this)">
+                    <label for="item8">Celular</label>
+                </li>
+            </ul>
+        </div> 
+        
+        <div id="info8" class="tab-content">
+            <h2>Sites Importantes</h2>
+            <div class="links-container">
+                <div class="link-card">
+                    <a href="https://www.expressoitamarati.com.br/?utm_source=google-ads&utm_brand=itamarati&utm_campaign=expresso_itamarati&utm_kxconfig=u3fp0qvzv&gad_source=1&gclid=Cj0KCQjwqv2_BhC0ARIsAFb5Ac83V_TPcUyM9BvSEwol0ccCxx3uDUz7RT13rE5yp0xcxfMLQIc3xL0aAhkFEALw_wcB" target="_blank" rel="noopener noreferrer">
+                        <div>
+                            <div class="link-title">Expresso Itamarati</div>
+                            <div class="link-description">Site oficial da empresa de ônibus</div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="link-card">
+                    <a href="https://www.termas.com.br/duvidas" target="_blank" rel="noopener noreferrer">
+                        <div>
+                            <div class="link-title">Thermas dos Laranjais</div>
+                            <div class="link-description">Dúvidas frequentes e informações</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     </div>
@@ -537,6 +701,15 @@
 
             document.getElementById(tabName).style.display = "block";
             evt.currentTarget.className += " active";
+        }
+
+        function toggleCheck(checkbox) {
+            const label = checkbox.nextElementSibling;
+            if(checkbox.checked) {
+                label.classList.add('checked');
+            } else {
+                label.classList.remove('checked');
+            }
         }
     </script>
 </body>
