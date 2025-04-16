@@ -219,6 +219,132 @@
             font-size: 0.9em;
         }
     }
+
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #556B2F;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            background-color: #6B8E23;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-button:hover {
+            background-color: #556B2F;
+        }
+
+        .tab-button.active {
+            background-color: #808000;
+        }
+
+        .tab-content {
+            display: none;
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fade 0.3s;
+        }
+
+        /* Estilos específicos para a aba do mapa */
+        #info6.tab-content {
+            padding: 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .map-container {
+            width: 100%;
+            max-height: 70vh;
+            overflow: auto;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+        }
+
+        .map-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .map-note {
+            padding: 15px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .tab-button {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+            
+            .map-container {
+                max-height: 60vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 5px;
+                padding: 5px;
+            }
+            
+            .map-note {
+                font-size: 0.8em;
+                padding: 10px;
+            }
+        }
+
+        @keyframes fade {
+            from {opacity: 0;}
+        }
     </style>
 </head>
 <body>
@@ -234,6 +360,7 @@
             <button class="tab-button" onclick="openTab(event, 'info3')">Armários</button>
             <button class="tab-button" onclick="openTab(event, 'info4')">Regras</button>
             <button class="tab-button" onclick="openTab(event, 'info5')">Transporte</button>
+            <button class="tab-button" onclick="openTab(event, 'info6')">Mapa</button>
         </div>
 
         <div id="info1" class="tab-content active">
@@ -368,11 +495,35 @@
                 </div>
             </div>
         </div>
+
+        <div id="info6" class="tab-content">
+            <div class="map-container">
+                <img src="MapaThermas.jpg" alt="Mapa completo do Thermas dos Laranjais" class="map-image">
+            </div>
+            <div class="map-note">
+                Role a imagem para visualizar todas as áreas do parque
+            </div>
+        </div>
     </div>
 
     </div>
 
     <script>
+        function openTab(evt, tabName) {
+            let tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
+
+            let tabButtons = document.getElementsByClassName("tab-button");
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].className = tabButtons[i].className.replace(" active", "");
+            }
+
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
         function openTab(evt, tabName) {
             let tabContents = document.getElementsByClassName("tab-content");
             for (let i = 0; i < tabContents.length; i++) {
